@@ -1,3 +1,10 @@
+// Component HeaderDashed – tiêu đề section dạng hai phần (head1 + head2) kèm gạch ngang trang trí
+// Props:
+//   head1 – phần đầu tiêu đề (màu xám nhạt)
+//   head2 – phần thứ hai của tiêu đề (màu xám đậm)
+//   paragraph – (tuỳ chọn) đoạn mô tả bên dưới tiêu đề
+//   classStyle – class tuỳ chỉnh thêm
+
 const HeaderDashed = ({ head1, head2, paragraph, classStyle }) => {
 	return (
 		<header id="section-header" className="text-capitalize">

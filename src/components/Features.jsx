@@ -1,5 +1,9 @@
+// Component Features – hiển thị danh sách các tính năng nổi bật của shop
+// Gồm: chính sách đổi hàng, chính sách hoàn trả, hỗ trợ khách hàng
+// Mỗi tính năng được render bởi component SingleFeature
+
 import SingleFeature from "./SingleFeature";
-// Import Features Images
+// Import ảnh đại diện cho từng tính năng
 import exhangeImg from "../assets/download-f.png";
 import qualityImg from "../assets/quality_icon.png";
 import supportImg from "../assets/download-set.png";
@@ -14,7 +18,7 @@ const Features = () => {
 
 	return (
 		<section className="features d-flex flex-wrap text-center gap-5 column-gap-3 column-gap-lg-5 sec-padd">
-			{/* Map through images and render SingleFeature component for each */}
+			{/* Duyệt mảng ảnh và render SingleFeature cho từng tính năng */}
 			{featuresImgs.map((img, i) => (
 				<SingleFeature key={i} img={img} classLayout="col-12 col-lg" head={featuresContent[i].head} text={featuresContent[i].text} />
 			))}

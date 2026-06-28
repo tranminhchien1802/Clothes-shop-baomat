@@ -3,21 +3,14 @@ import { useParams } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import CollectionCard from "../components/CollectionCard";
 import HeaderDashed from "../components/HeaderDashed";
-// import FetchErrorMsg from "../components/FetchErrorMsg";
 import FetchWaitingMsg from "../components/FetchWaitingMsg";
-
-
-
-// Dummy Fixed Data:
-// import productsData from "../components/FixedData";
-
-
 import { motion } from "framer-motion";
 import { ShopContext } from "../context/ShopContext";
+import { ProductIterator } from "../patterns";
 
 const ProductDetails = () => {
 	const {productId} = useParams();
-	const {productsData} = useContext(ShopContext);
+	const {productsData, addToCart} = useContext(ShopContext);
 	// ;
 	// useEffect(() => console.log(productId), [productId])
 	
@@ -30,30 +23,32 @@ const ProductDetails = () => {
 	// const [allFetchedData, setAllFetchedData] = useState([]);
 	
 	useEffect(() => {
-		console.log(productsData[0].image[0]);
-		
-		// setAllFetchedData(productsData);  // all products
-		let data = productsData.find(obj => obj._id == productId);
-		data = {...data, rating: {stars: 4.5, count: 122}};
-		setProductData(data);             // the selected product
+		const found = productsData.find(obj => obj._id == productId);
+		if (found) {
+			const data = {...found, rating: {stars: 4.5, count: 122}};
+			setProductData(data);
+		}
 		setLoading(false);
 	}, [productId, productsData]);
 
 
-	// Function to find related products based on category
+	// Function to find related products using Iterator Pattern
 	const findRelatedProducts = () => {
 		if (!productData || !productsData.length) {
 			return <h1 className="text-center my-5">Loading...</h1>;
 		}
-		
-		const relatedProducts = productsData.filter(
+
+		// Sử dụng Iterator: lọc cùng category, loại trừ sản phẩm hiện tại
+		const iterator = new ProductIterator(productsData);
+		iterator.where(
 			(product) =>
 				product.category === productData.category && product._id != productData._id
 		);
+		const relatedProducts = iterator.collect().slice(0, 5);
 		
 		return (
 			<main className="d-flex row-gap-3 flex-wrap mt-4">
-			{relatedProducts.slice(0,5).map((pro,i) => {
+			{relatedProducts.map((pro,i) => {
 								return <CollectionCard key={i} data={pro}/>
 							})}
 			</main>
@@ -188,7 +183,15 @@ const ProductDetails = () => {
 								</div>
 							</div>
 							{/* Add to Cart Button */}
-							<button className="addcart-btn btn rounded-0 bg-black c-white mt-4 trans-3 mb-2 py-2 px-4">
+							<button
+								className={`addcart-btn btn rounded-0 bg-black c-white mt-4 trans-3 mb-2 py-2 px-4 ${!activeSize ? 'opacity-50' : ''}`}
+								onClick={() => {
+									// Nếu chưa chọn kích cỡ (size), hiển thị cảnh báo và không thêm vào giỏ
+									if (!activeSize) { alert('Please select a size'); return; }
+									// Gọi hàm addToCart từ ShopContext với sản phẩm hiện tại và kích cỡ đã chọn
+									addToCart(productData, activeSize);
+								}}
+							>
 								ADD TO CART
 							</button>
 							{/* Product Description and Reviews */}

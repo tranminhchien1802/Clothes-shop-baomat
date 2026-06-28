@@ -1,28 +1,33 @@
+// Component SubscriptionForm – form đăng ký nhận tin qua email
+// Cho phép người dùng nhập email và gửi đăng ký (hiện tại chỉ log ra console)
+
 import { useState } from "react";
 
 const SubscriptionForm = () => {
+	// State lưu giá trị email người dùng nhập vào
 	const [emailValue, setEmailValue] = useState('');
 	
+	// Hàm xử lý khi submit form: ngăn reload, log thông báo, xoá input
 	const handleForm = (e) => {
 		e.preventDefault();
 		console.log('subecibed sucessfully');
-		// clear input
+		// Xoá giá trị input sau khi submit
 		setEmailValue('')
 	}
 
 	return (
 		<section id="subscription-form" className="sec-padd">
 			<div className="container d-flex flex-column gap-3">
-				{/* Section Title */}
+				{/* Tiêu đề khuyến mãi */}
 				<h3>Subscribe now & get 20% off</h3>
 
-				{/* Description */}
+				{/* Mô tả ngắn */}
 				<p className="c-gray fs-small">
 					Lorem Ipsum is simply dummy text of the printing and typesetting
 					industry.
 				</p>
 
-				{/* Subscription Form */}
+				{/* Form nhập email */}
 				<form className="form d-flex" onSubmit={handleForm}>
 					<input
 						type="email"

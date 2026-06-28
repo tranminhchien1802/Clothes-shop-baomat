@@ -1,37 +1,39 @@
+// Component AllCollections – hiển thị tất cả sản phẩm kèm chức năng sắp xếp theo giá
+// Sử dụng Iterator Pattern (orderBy) để sắp xếp thay vì sort thủ công
+
 import { useEffect, useState } from "react";
 import CollectionCard from "./CollectionCard";
 import FetchWaitingMsg from "./FetchWaitingMsg";
 import HeaderDashed from "./HeaderDashed";
+import { ProductIterator } from "../patterns";
 
 const AllCollections = ({ data }) => {
-	// State to manage sorted data and the sorting criteria
+	// State chứa dữ liệu đã được sắp xếp
 	const [sortedData, setSortedData] = useState([]);
+	// State lưu tiêu chí sắp xếp hiện tại ('low-high', 'high-low', 'default')
 	const [sortBy, setSortBy] = useState(null);
 
-	// Function to handle sorting of data by price
+	// Hàm sắp xếp dữ liệu sử dụng Iterator Pattern
 	const sortData = (price) => {
-		let newData = [...data];
 		setSortBy(price);
-		switch(price) {
-			case 'low-high':
-                newData.sort((a, b) => a.price - b.price);
-                break;
-            case 'high-low':
-                newData.sort((a, b) => b.price - a.price);
-                break;
-			case 'default':
-            default:
-                newData = [...data];
-                break;
+		const iterator = new ProductIterator(data);
+
+		if (price === 'low-high') {
+			iterator.orderBy((a, b) => a.price - b.price);
+		} else if (price === 'high-low') {
+			iterator.orderBy((a, b) => b.price - a.price);
 		}
-		setSortedData(newData)
+		// 'default' – không gọi orderBy, giữ nguyên thứ tự gốc
+
+		setSortedData(iterator.collect());
 	}
 
-	// Effect to update sortedData when data changes
+	// Effect: mỗi khi data thay đổi, cập nhật sortedData và áp dụng lại bộ lọc nếu có
     useEffect(() => {
-        setSortedData(data); 
-		if (sortedData.length) {
-			sortData(sortBy)
+        if (sortBy) {
+			sortData(sortBy);
+		} else {
+			setSortedData(data);
 		}
     }, [data]);
 
@@ -40,7 +42,6 @@ const AllCollections = ({ data }) => {
 			<header className="d-flex justify-content-between align-items-center">
 				<HeaderDashed head1="ALL" head2="COLLECTIONS" />
 				
-				{/* Sorting options dropdown */}
 				<select
 					className="text-center border-2 border-l-gray outline-0 py-2 fs-small cursor"
 					onChange={(e) => sortData(e.target.value)}
@@ -51,11 +52,10 @@ const AllCollections = ({ data }) => {
 				</select>
 			</header>
 
-			{/* Product display section */}
 			<section className="mt-3">
 				<div className="row row-gap-4">
 					{!sortedData.length ? (
-						<FetchWaitingMsg />               // Show loading message
+						<FetchWaitingMsg />
 					)                 
 					: (
 						sortedData.map((product, i) => (

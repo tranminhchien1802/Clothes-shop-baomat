@@ -1,26 +1,31 @@
+// Component FiltersSidebar – thanh bên chứa bộ lọc danh mục (category) và loại (type)
+// Nhận props: filterByData – hàm callback được gọi khi bộ lọc thay đổi
+// Kết hợp với context search để lọc sản phẩm
+
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 
 const  FiltersSidebar = ({ filterByData }) => {
-	// State to show/hide category filter (for small screens)
+	// State hiển thị/ẩn bộ lọc category (dành cho màn hình nhỏ)
 	const [showCategory, setShowCategory] = useState(false);       
-	// State for selected categories and types
+	// State mảng chứa các category đang được chọn (Men, Women, Kids)
 	const [activeCategories, setActiveCategories] = useState([]);
+	// State mảng chứa các type đang được chọn (Topwear, Bottomwear, Winterwear)
 	const [activeTypes, setActiveTypes] = useState([]);
-	const {search} = useContext(ShopContext)
+	const {search} = useContext(ShopContext) // Lấy giá trị tìm kiếm từ context
 
-	// Trigger filter function whenever categories or types change
+	// Mỗi khi activeCategories, activeTypes hoặc search thay đổi => gọi filterByData
 	useEffect(() => {
 		filterByData({categories: activeCategories, types: activeTypes});
 	}, [activeCategories, activeTypes, search])
 
-	// Toggle selected categories
+	// Thêm/xoá category khỏi danh sách active khi checkbox được click
 	const manageActiveCategories = (e) => {
 		const value = e.target.value;
 		setActiveCategories(prev => prev.includes(value)? prev.filter(el => el !== value) : [...prev, value]);
 	}
 
-	// Toggle selected types
+	// Thêm/xoá type khỏi danh sách active khi checkbox được click
 	const manageActiveTypes = (e) => {
 		const value = e.target.value;
 		setActiveTypes(prev => prev.includes(value)? prev.filter(el => el !== value) : [...prev, value]);
@@ -28,7 +33,7 @@ const  FiltersSidebar = ({ filterByData }) => {
 
 	return (
 		<aside className="filters-sidebar col-12 col-md-4 col-lg-3 col-xxl-2">
-			{/* Toggle button for small screens */}
+			{/* Nút toggle bộ lọc (chỉ hiển thị trên màn hình nhỏ) */}
 			<h3
 				className="small-screen fw-normal fs-4 d-flex align-items-center gap-2 fit-content p-2 trans-3 rounded"
 				role="button"
@@ -43,10 +48,10 @@ const  FiltersSidebar = ({ filterByData }) => {
 				></i>
 			</h3>
 
-			{/* Filters label for large screens */}
+			{/* Nhãn FILTERS (chỉ hiển thị trên màn hình lớn) */}
 			<h3 className="large-screen fw-normal fs-4 d-none mt-2">FILTERS</h3>
 			
-			{/* Category filter */}
+			{/* Bộ lọc theo danh mục: Men / Women / Kids */}
 			<div
 				className={`category border rounded p-3 mt-405 ${
 					showCategory ? "d-block" : "d-none"
@@ -75,7 +80,7 @@ const  FiltersSidebar = ({ filterByData }) => {
 				</ul>
 			</div>
 
-			{/* Type filter */}
+			{/* Bộ lọc theo loại: Topwear / Bottomwear / Winterwear */}
 			<div
 				className={`type border rounded p-3 mt-4 ${
 					showCategory ? "d-block" : "d-none"

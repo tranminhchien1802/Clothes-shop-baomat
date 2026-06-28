@@ -4,8 +4,12 @@ import mainImg from "../assets/about_img.png";
 import SubscriptionForm from "../components/SubscriptionForm";
 import DescribedImage from "../components/DescribedImage";
 
+// Component: About (Trang giới thiệu)
+// Mô tả: Hiển thị thông tin về cửa hàng, sứ mệnh, lý do chọn shop,
+// và form đăng ký nhận tin.
 const About = () => {
 	return (
+		// motion.div: Bao bọc trang với hiệu ứng fade-in/out khi chuyển trang
 		<motion.div
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
@@ -13,16 +17,17 @@ const About = () => {
 			className="about-page text-center py-3 pt-5"
 		>
 			<div className="container">
-				{/* Page header with dashed styling */}
+				{/* HeaderDashed: Tiêu đề "ABOUT US" có gạch ngang trang trí */}
 				<HeaderDashed head1="ABOUT" head2="US" classStyle="fw-normal fs-3" />
 				
-				{/* Main image with descriptive text */}
+				{/* DescribedImage: Hiển thị hình ảnh cửa hàng kèm mô tả bên cạnh */}
 				<DescribedImage img={mainImg} imgTitle="clothes image" 
 				styleInLarge="column-gap-xl-4"
 				styleImg="col-xl-5"
 				styleText="col-xl-6"
 				sideText={					
 					<>
+					{/* Đoạn văn giới thiệu về nguồn gốc và sứ mệnh của Algohary Shop */}
 					<p>
 						Algohary Shop was born out of a passion for innovation and a desire to
 						revolutionize the way people shop online. Our journey began with a
@@ -37,7 +42,7 @@ const About = () => {
 						essentials, we offer an extensive collection sourced from trusted
 						brands and suppliers.
 					</p>
-					{/* Mission statement */}
+					{/* Mission: Phần tuyên bố sứ mệnh của cửa hàng */}
 					<div className="mission">
 						<h4 className="my-3 mt-4 c-black">Our Mission</h4>
 						<p className="mb-0">
@@ -49,12 +54,12 @@ const About = () => {
 					</div>
 					</>}/>
 
-				{/* Why Choose Us section */}
+				{/* Choose Us section: Phần "Why Choose Us" — 3 lý do chọn shop */}
 				<section className="choose-us mt-6">
 					<HeaderDashed head1="WHY" head2="CHOOSE US" />
 					<div className="pros mt-4">
 						<div className="row row-gap-4">
-							{/* Each article represents a benefit */}
+							{/* Quality Assurance: Cam kết chất lượng sản phẩm */}
 							<article className="col-12 col-lg-4">
 							<div className="text-start border rounded p-4 h-100">
 								<h4 className="fs-6 fw-bold">Quality Assurance:</h4>
@@ -64,6 +69,7 @@ const About = () => {
 								</p>
 							</div>
 							</article>
+							{/* Convenience: Sự tiện lợi khi mua sắm */}
 							<article className="col-12 col-lg-4">
 							<div className="text-start border rounded p-4 h-100">
 								<h4 className="fs-6 fw-bold">Convenience:</h4>
@@ -73,6 +79,7 @@ const About = () => {
 								</p>
 							</div>
 							</article>
+							{/* Exceptional Customer Service: Dịch vụ khách hàng xuất sắc */}
 							<article className="col-12 col-lg-4">
 							<div className="text-start border rounded p-4 h-100">
 								<h4 className="fs-6 fw-bold">Exceptional Customer Service:</h4>
@@ -86,7 +93,7 @@ const About = () => {
 					</div>
 				</section>
 
-				{/* Subscription form for users */}
+				{/* SubscriptionForm: Form đăng ký nhận tin khuyến mãi qua email */}
 				<SubscriptionForm />
 			</div>
 		</motion.div>

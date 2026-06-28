@@ -1,3 +1,8 @@
+// FixedData.jsx – Dữ liệu sản phẩm tĩnh (mock data) dùng để render danh sách sản phẩm
+// File này export một mảng productsData chứa 52 sản phẩm mẫu với các trường:
+// _id, name, description, price, image (mảng ảnh), category, subCategory, sizes, date, bestseller
+// Các ảnh được import từ thư mục assets
+
 import p_img1 from '../assets/p_img1.png'
 import p_img2_1 from '../assets/p_img2_1.png'
 import p_img2_2 from '../assets/p_img2_2.png'

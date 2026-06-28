@@ -4,51 +4,44 @@ import FiltersSidebar from "../components/FiltersSidebar";
 import AllCollections from "../components/AllCollections";
 import { ShopContext } from "../context/ShopContext";
 
-// Dummy Fixed Data:
-// import productsData from "../components/FixedData";
-
+// Component: Collection (Trang danh mục sản phẩm)
+// Sử dụng Iterator Pattern để lọc sản phẩm thay vì filter thủ công
 const Collection = () => {
-	const {productsData, search} = useContext(ShopContext)
-	// State to store filtered data based on user selection
+	// productsData: toàn bộ sản phẩm từ context
+	// search: từ khoá tìm kiếm từ context (dùng chung với header)
+	// createProductIterator: factory tạo iterator để duyệt/lọc sản phẩm
+	const {productsData, search, createProductIterator} = useContext(ShopContext)
+
+	// State filteredData: dữ liệu đã được lọc dựa trên lựa chọn của người dùng
 	const [filteredData, setFilteredData] = useState([]);
 
-	// Function to filter products based on categories and types
+	// Hàm filterByData: Sử dụng Iterator Pattern để lọc sản phẩm
 	const filterByData = ({categories, types}) => {
-		let newData = [...productsData];
+		// Tạo iterator từ danh sách sản phẩm gốc
+		const iterator = createProductIterator();
+
+		// Thêm bộ lọc tìm kiếm nếu có
 		if (search !== '') {
-			newData = newData.filter(el => el.name.toLowerCase().includes(search.toLowerCase()))
+			iterator.where(el => el.name.toLowerCase().includes(search.toLowerCase()));
 		}
 
+		// Thêm bộ lọc danh mục nếu có
 		if (categories.length) {
-			// Filter by selected categories
-			newData = newData.filter(el => categories.includes(el.category));
+			iterator.where(el => categories.includes(el.category));
 		}
+
+		// Thêm bộ lọc loại sản phẩm nếu có
 		if (types.length) {
-			// Filter by selected subcategories (types)
-			newData = newData.filter(el => types.includes(el.subCategory));
+			iterator.where(el => types.includes(el.subCategory));
 		}
-		setFilteredData(newData);
-		console.log(newData);
+
+		// Dùng collect() để lấy kết quả sau tất cả bộ lọc
+		const result = iterator.collect();
+		setFilteredData(result);
 	}
 
-
-	// Fetch data on component mount
-	useEffect(() => {
-		// fetch("https://ahmed-maher77.github.io/Forever__Modern-E-Commerce-Web-Application-with-ReactJS-and-Bootstrap/db.json")
-		// 	.then((res) => res.json())
-		// 	.then((json) => {
-		// 		setData(json);              // Store fetched data
-		// 		setLoading(false);          // Stop loading once data is fetched
-		// 	}).catch(error => {
-		// 		setErrorInFetch(error);     // Handle any errors in fetching
-		// 		setLoading(false);          // Stop loading even if there's an error
-		// 	})
-		// setData(productsData);
-		// setLoading(false);
-	}, []);
-
-
-
+	// useEffect: (Đã bị comment) Dùng để fetch dữ liệu từ API khi component mount
+	useEffect(() => {}, []);
 
 	return (
 		<motion.div
@@ -59,10 +52,8 @@ const Collection = () => {
 		>
 			<div className="container">
 				<div className="row row-gap-4">
-					{/* Sidebar with filters */}
 					<FiltersSidebar filterByData={filterByData} />
 
-					{/* Display all collections with the fetched data */}
 					<div className="col-12 col-md-8 col-lg-9 col-xxl-10 position-relative">
 					{
 						filteredData.length?
@@ -72,7 +63,6 @@ const Collection = () => {
 					}
 						
 					</div>
-					{/* <AllCollections data={data} loading={loading} errorInFetch={errorInFetch} /> */}
 				</div>
 			</div>
 		</motion.div>

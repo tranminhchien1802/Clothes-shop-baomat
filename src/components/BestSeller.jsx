@@ -1,16 +1,23 @@
+// Component BestSeller – hiển thị sản phẩm bán chạy nhất (bestseller = true)
+// Sử dụng Iterator Pattern (where + first/last) để lọc bestseller
+
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import HeaderDashed from "./HeaderDashed";
 import CollectionCard from "./CollectionCard";
 
 const BestSeller = () => {
-	const { productsData } = useContext(ShopContext);
+	// Lấy danh sách tất cả sản phẩm từ context
+	const { createProductIterator } = useContext(ShopContext);
+	// State chứa danh sách sản phẩm bestseller
 	const [bestSeller, setBestSeller] = useState([]);
 
+	// Effect sử dụng Iterator Pattern để lọc bestseller
 	useEffect(() => {
-		const bestProducts = productsData.filter((product) => product.bestseller);
-		setBestSeller(bestProducts.slice(0, 5));
-	}, [productsData]);
+		const iterator = createProductIterator();
+		iterator.where(product => product.bestseller === true);
+		setBestSeller(iterator.collect().slice(0, 5));
+	}, [createProductIterator]);
 
 	return (
 		<div className="best-seller py-5">

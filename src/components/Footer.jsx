@@ -1,19 +1,22 @@
+// Component Footer – hiển thị chân trang của ứng dụng
+// Bao gồm logo, mô tả, link điều hướng, thông tin liên hệ và bản quyền
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-// Import Tooltip directly from Bootstrap
+// Import Tooltip trực tiếp từ Bootstrap
 import { Tooltip } from "bootstrap";
 
 const Footer = () => {
+  // State lưu năm hiện tại để hiển thị ở phần bản quyền
   const [currentYear, setCurrentYear] = useState(null);
 
-  // Set the current year
+  // Hàm lấy năm hiện tại từ đối tượng Date
   const getCurrentYear = () => {
     const dateNow = new Date();
     setCurrentYear(dateNow.getFullYear());
   };
 
   useEffect(() => {
-    // Initialize Bootstrap tooltips
+    // Khởi tạo tất cả Bootstrap tooltip trong footer
     const tooltipTriggerList = document.querySelectorAll(
       '[data-bs-toggle="tooltip"]'
     );
@@ -21,9 +24,10 @@ const Footer = () => {
       (tooltipTriggerEl) => new Tooltip(tooltipTriggerEl)
     );
 
+    // Gọi hàm lấy năm hiện tại
     getCurrentYear();
 
-    // Cleanup tooltips on component unmount
+    // Cleanup: huỷ tất cả tooltip khi component unmount
     return () => {
       tooltipList.forEach((tooltip) => tooltip.dispose());
     };
@@ -34,7 +38,7 @@ const Footer = () => {
       <div className="container d-flex flex-wrap">
         <main className="col-12">
           <div className="row row-gap-5">
-            {/* Logo and Description */}
+            {/* Logo và mô tả ngắn về shop */}
             <article className="col-12 col-lg-6 text-center">
               <Link to="/" className="logo text-decoration-none text-dark">
                 <h3 className="fs-3 mb-0">
@@ -49,7 +53,7 @@ const Footer = () => {
               </p>
             </article>
 
-            {/* Social Links */}
+            {/* Danh sách link điều hướng của công ty */}
             <div className="social col-12 col-lg text-center">
               <h3>COMPANY</h3>
               <ul className="ps-0 mt-3">
@@ -74,7 +78,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Contact Information */}
+            {/* Thông tin liên hệ: điện thoại, email, LinkedIn */}
             <div className="address col-12 col-lg text-center">
               <h3 className="mb-3">GET IN TOUCH</h3>
               <ul className="d-flex flex-column align-items-center align-items-lg-start ps-0 gap-2">
@@ -103,7 +107,7 @@ const Footer = () => {
           </div>
         </main>
 
-        {/* Copyright Information */}
+        {/* Phần bản quyền – hiển thị năm hiện tại và tên tác giả */}
         <div className="copyrights border-t-gray mt-5 pt-4 col-12 text-center c-d-gray">
           Copyright @{currentYear}
           <a

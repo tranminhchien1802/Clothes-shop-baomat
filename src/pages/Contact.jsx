@@ -4,8 +4,12 @@ import DescribedImage from "../components/DescribedImage";
 import SubscriptionForm from "../components/SubscriptionForm";
 import HeaderDashed from "../components/HeaderDashed";
 
+// Component: Contact (Trang liên hệ)
+// Mô tả: Hiển thị thông tin cửa hàng (địa chỉ, điện thoại, email),
+// thông tin tuyển dụng và form đăng ký nhận tin.
 const Contact = () => {
   return (
+    // motion.div: Bao bọc trang với hiệu ứng chuyển cảnh fade-in/out
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -13,10 +17,10 @@ const Contact = () => {
       className="contact-page text-center py-3 pt-5"
     >
       <div className="container">
-        {/* Header with dashed style */}
+        {/* HeaderDashed: Tiêu đề "CONTACT US" có gạch ngang trang trí */}
         <HeaderDashed head1="CONTACT" head2="US" classStyle="fw-normal fs-3" />
 
-        {/* Described Image Section */}
+        {/* DescribedImage: Hình ảnh đại diện (bàn làm việc) kèm thông tin bên cạnh */}
         <DescribedImage
           img={mainImg}
           imgTitle="desk image"
@@ -25,7 +29,7 @@ const Contact = () => {
           styleText="col-xl-5"
           sideText={
             <>
-              {/* Store Information */}
+              {/* Our Store: Thông tin cửa hàng — địa chỉ, điện thoại, email */}
               <div className="our-store">
                 <h3 className="c-d-gray">Our Store</h3>
                 <address className="my-4">
@@ -39,7 +43,7 @@ const Contact = () => {
                   Email: chien180203
                 </div>
               </div>
-              {/* Careers Information */}
+              {/* Careers: Thông tin tuyển dụng tại Algohary Shop */}
               <div className="careers mt-5">
                 <h4 className="c-d-gray">Careers at Algohary Shop</h4>
                 <span className="d-block my-4">
@@ -53,7 +57,7 @@ const Contact = () => {
           }
         />
 
-        {/* Subscription Form */}
+        {/* SubscriptionForm: Form đăng ký nhận tin khuyến mãi qua email */}
         <SubscriptionForm />
       </div>
     </motion.div>
