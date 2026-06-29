@@ -26,7 +26,7 @@ app.disable('x-powered-by');
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['http://localhost:5173', 'http://localhost:3000'];
+  : ['http://localhost:5173', 'http://localhost:3000', 'http://localhost:5000'];
 
 app.use(helmet({
   contentSecurityPolicy: false,
@@ -79,6 +79,11 @@ app.use('/api/orders', ordersRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/stats', statsRoutes);
+
+// Phục vụ trang API Testing UI
+app.get('/api-tester', (req, res) => {
+  res.sendFile(path.join(__dirname, 'api-tester.html'));
+});
 
 // Endpoint kiểm tra sức khỏe server
 app.get('/api/health', (req, res) => {
@@ -189,12 +194,12 @@ const initDb = async () => {
 
   const admin = db.users.find(u => u.email === 'admin');
   if (admin && admin.password && admin.password.length < 20) {
-    const hashed = await bcrypt.hash('123', 10);
+    const hashed = await bcrypt.hash('admin123456', 10);
     admin.password = hashed;
   }
 
   if (!admin) {
-    const hashed = await bcrypt.hash('123', 10);
+    const hashed = await bcrypt.hash('admin123456', 10);
     db.users.push({
       id: '1',
       name: 'Admin',
