@@ -1,0 +1,111 @@
+=== MAP BẢO MẬT TRONG CODE ===
+
+========================================
+CHƯƠNG 1 - TỔNG QUAN BẢO MẬT WEB
+========================================
+1. Injection (SQL):
+   - Dùng JSON file thay SQL: server/db.json
+   - Bcrypt hash/bcompare: auth.js:60, auth.js:106
+   - So sánh ===: auth.js:54, auth.js:99
+
+2. Injection (Command):
+   - Không có exec/spawn từ user input
+   - DB_PATH cố định: auth.js:16, cart.js:11, orders.js:21...
+
+3. XSS:
+   - stripHtml(): products.js:14-17
+   - escapeHtml(): orders.js:14-18
+   - JSON response: không render HTML
+
+4. CSRF:
+   - CORS whitelist: index.js:40-52
+   - Yêu cầu token: cart.js:20 (auth), products.js:48 (adminAuth)
+
+5. Broken Authentication:
+   - JWT verify: middleware/auth.js:25
+   - Rate limit login: index.js:64-71
+   - Password validation: auth.js:43-45
+   - Bcrypt compare ALL: auth.js:106 (kể cả admin)
+
+6. Sensitive Data Exposure:
+   - Ẩn password: users.js:22
+   - Global error handler: index.js:89-95 (ẩn stack trace)
+   - app.disable('x-powered-by'): index.js:25
+
+7. Security Misconfiguration:
+   - Helmet: index.js:31-38 (HSTS, CSP off)
+   - Giới hạn body: index.js:55 ('1mb')
+   - Global rate limit: index.js:57-62 (200/15ph)
+
+8. SSRF:
+   - Không có fetch/request từ user input
+
+========================================
+CHƯƠNG 2 - HTML INJECTION
+========================================
+- Bảo vệ: stripHtml() trong server/routes/products.js:14-17
+  Xóa tất cả thẻ HTML <...> khỏi input
+
+- Bảo vệ: escapeHtml() trong server/routes/orders.js:14-18
+  Escape & < > " ' thành HTML entities (dùng trong invoice/delivery-note)
+
+========================================
+CHƯƠNG 3 - XSS
+========================================
+- Bảo vệ: stripHtml() tại products.js:60-63 (name, description, category)
+- Bảo vệ: escapeHtml() tại orders.js:151-157 (invoice HTML)
+- Bảo vệ: orders.js:219-224 (delivery-note HTML)
+- JSON response không render HTML nên XSS không thực thi
+
+========================================
+CHƯƠNG 4 - SQL INJECTION
+========================================
+- Dùng JSON file thay vì SQL: server/db.json
+- So sánh chính xác: auth.js:54 (===), auth.js:99 (===)
+- Hash mật khẩu: auth.js:60 (bcrypt.hash)
+- So sánh mật khẩu: auth.js:106 (bcrypt.compare)
+
+========================================
+CHƯƠNG 5 - AUTHENTICATION VULNERABILITIES
+========================================
+- Weak password: auth.js:43-45 (yêu cầu 4-128 ký tự)
+- Rate limit login: index.js:64-71 (10 requests/15 phút)
+- Rate limit register: index.js:69-70 (10 requests/15 phút)
+- Seed admin password: index.js:191-205
+- Global rate limit: index.js:57-62 (200 requests/15 phút)
+
+========================================
+CHƯƠNG 6 - SESSION & COOKIE
+========================================
+- JWT tạo: auth.js:75 (expiresIn: '1d')
+- JWT verify: middleware/auth.js:25
+- JWT secret: middleware/auth.js:8 (env hoặc random 64 bytes)
+- Token từ header: middleware/auth.js:15-18 (Authorization: Bearer)
+- Xác thực user: middleware/auth.js:14-32
+
+========================================
+CHƯƠNG 8 - CSRF
+========================================
+- Chặn CORS: index.js:40-52 (chỉ cho phép origin cụ thể)
+- Yêu cầu token: cart.js:20 (auth middleware), products.js:48 (adminAuth)
+- Chống GET-based: Không có endpoint dùng GET để xóa (dùng DELETE)
+
+========================================
+CHƯƠNG 9 - FILE UPLOAD
+========================================
+- Chưa có endpoint upload file (an toàn theo cách không có)
+
+========================================
+CHƯƠNG 10 - PATH TRAVERSAL & COMMAND INJECTION
+========================================
+- DB_PATH dùng __dirname: auth.js:16, cart.js:11, orders.js:21...
+  => Cố định, không lấy từ user input
+
+========================================
+CHƯƠNG 12 - API & JWT SECURITY
+========================================
+- JWT_SECRET mạnh: middleware/auth.js:8 (random 64 bytes nếu không có env)
+- adminAuth kiểm tra role: middleware/auth.js:37-44
+- Ẩn password: users.js:22 (map chỉ lấy id/name/email/role)
+- Global error handler ẩn stack: index.js:89-95
+- Helmet HSTS: index.js:31-38
