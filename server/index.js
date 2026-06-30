@@ -18,6 +18,7 @@ const ordersRoutes = require('./routes/orders');    // Router xử lý đơn hà
 const usersRoutes = require('./routes/users');      // Router quản lý người dùng (admin)
 const productsRoutes = require('./routes/products');
 const statsRoutes = require('./routes/stats'); // Router quản lý sản phẩm (admin)
+const uploadRoutes = require('./routes/upload'); // Router upload file
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -79,10 +80,30 @@ app.use('/api/orders', ordersRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/upload', uploadRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Phục vụ trang API Testing UI
 app.get('/api-tester', (req, res) => {
-  res.sendFile(path.join(__dirname, 'api-tester.html'));
+  const htmlPath = path.join(__dirname, 'api-tester.html');
+  if (fs.existsSync(htmlPath)) {
+    res.sendFile(htmlPath);
+  } else {
+    const b64Path = path.join(__dirname, 'api-tester.txt');
+    if (fs.existsSync(b64Path)) {
+      const b64 = fs.readFileSync(b64Path, 'utf8');
+      res.type('html').send(Buffer.from(b64, 'base64').toString('utf8'));
+    } else {
+      res.status(500).send('API Tester page not found');
+    }
+  }
+});
+
+// Reset rate limit (dùng khi test bị 429)
+app.post('/api/reset-limit', (req, res) => {
+  globalLimiter.resetKey(req.ip);
+  authLimiter.resetKey(req.ip);
+  res.json({ success: true, message: 'Rate limit reset for ' + req.ip });
 });
 
 // Endpoint kiểm tra sức khỏe server
@@ -168,7 +189,7 @@ const initDb = async () => {
     db = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
   } catch (e) {
     console.error('Database file corrupted, initializing empty database...');
-    db = { products: [], users: [], carts: [], orders: [] };
+    db = { products: [], users: [], carts: [], orders: [], refreshTokens: [] };
   }
 
   // Nếu chưa có sản phẩm nào, thêm seedProducts vào database
@@ -209,7 +230,8 @@ const initDb = async () => {
     });
   }
 
-  // Ghi lại database sau khi seed / hash
+  if (!db.refreshTokens) db.refreshTokens = [];
+
   fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2));
 };
 
