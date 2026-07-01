@@ -23,6 +23,11 @@ const auth = (req, res, next) => {
   try {
     // Verify token với JWT_SECRET, nếu ok thì decode payload
     const decoded = jwt.verify(token, JWT_SECRET);
+    // Kiểm tra User-Agent binding — chống session hijacking
+    const currentUA = req.headers['user-agent'] || '';
+    if (decoded.ua && decoded.ua !== currentUA) {
+      return res.status(401).json({ success: false, message: 'UA mismatch — session hijacking detected' });
+    }
     req.user = decoded; // Lưu thông tin user vào request để dùng ở controller tiếp theo
     next();
   } catch (error) {

